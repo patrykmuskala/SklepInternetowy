@@ -1,0 +1,27 @@
+﻿@model IEnumerable<SklepInternetowy.Models.Album>
+@using SklepInternetowy.Infrastructure
+
+<div id="SekcjaListaKategori">
+    <ul class="KursyTrzyKolumny MalaListaKategorii">
+        @foreach (var album in Model)
+        {
+            <li>
+                <article>
+                    <a class="dodajDoKoszykaLink" href="@Url.Action("DodajDoKoszyka","Koszyk", new { id = album.AlbumId })">
+                        <img src="@Url.Content("~/Content/Images/koszyk.png")" />
+                    </a>
+                    @if (album.Bestseller)
+                {
+                        <div class="bestsellerFlag"></div>
+                    }
+                    <a class="kursSzczegolyLink" href="@Url.Action("Szczegoly","ALbumy", new { id = album.AlbumId })">
+                        <img class="kurs" src="@Url.ObrazkiSciezka(album.NazwaPlikuObrazka)" />
+                        <h1>
+                            @album.AutorAlbumu - @album.TytulAlbumu
+                        </h1>
+                    </a>
+                </article>
+            </li>
+        }
+    </ul>
+</div>

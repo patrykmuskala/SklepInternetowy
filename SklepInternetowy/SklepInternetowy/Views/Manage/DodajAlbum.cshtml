@@ -1,0 +1,103 @@
+﻿@model SklepInternetowy.ViewModels.EditAlbumViewModel
+@{
+    ViewBag.Title = "DodajAlbum";
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+}
+<hr />
+<h2 class="manageHeader">Edycja produktu</h2>
+<div>
+    @if (Model.Potwierdzenie.HasValue && Model.Potwierdzenie.Value)
+    {
+        <div style="text-align: center; margin: 50px;">
+            Pomyślnie wprowadzono zmiany!
+        </div>
+    }
+
+    @using (@Html.BeginForm("DodajAlbum", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="error-summary-centered">
+            @Html.ValidationSummary()
+        </div>
+        @Html.HiddenFor(o => o.Album.AlbumId)
+        @Html.HiddenFor(o => o.Album.DataDodania)
+        @Html.HiddenFor(o => o.Album.NazwaPlikuObrazka)
+
+        <div style="text-align: center;">
+            <table id="albumedit-address-table">
+                <tr>
+                    <td>@Html.LabelFor(o => o.Album.AutorAlbumu, "Autor:")</td>
+                    <td>@Html.TextBoxFor(o => o.Album.AutorAlbumu)</td>
+                    <td>@Html.ValidationMessageFor(o => o.Album.AutorAlbumu)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(o => o.Album.TytulAlbumu, "Album:")</td>
+                    <td>@Html.TextBoxFor(o => o.Album.TytulAlbumu)</td>
+                    <td>@Html.ValidationMessageFor(o => o.Album.TytulAlbumu)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(o => o.Album.OpisAlbumu, "Opis:")</td>
+                    <td>@Html.TextBoxFor(o => o.Album.OpisAlbumu)</td>
+                    <td>@Html.ValidationMessageFor(o => o.Album.OpisAlbumu)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(o => o.Album.OpisSkrocony, "Opis skrócony:")</td>
+                    <td>@Html.TextBoxFor(o => o.Album.OpisSkrocony)</td>
+                    <td>@Html.ValidationMessageFor(o => o.Album.OpisSkrocony)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(o => o.Kategorie, "Kategoria:")</td>
+                    <td>@Html.DropDownListFor(m => m.Album.KategoriaId, new SelectList(Model.Kategorie, "KategoriaId", "NazwaKategorii", Model.Kategorie.First().KategoriaId))</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(o => o.Album.CenaAlbumu, "Cena:")</td>
+                    <td>@Html.TextBoxFor(o => o.Album.CenaAlbumu)</td>
+                    <td>@Html.ValidationMessageFor(o => o.Album.CenaAlbumu)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(o => o.Album.Bestseller, "Bestseller:")</td>
+                    <td>@Html.CheckBoxFor(o => o.Album.Bestseller)</td>
+                    <td></td>
+                </tr>
+                @if (ViewBag.EditMode == null || !ViewBag.EditMode)
+                {
+                    <tr>
+                        <td colspan="3">
+                            <div class="upload">
+                                <input type="file" name="file" />
+                            </div>
+                        </td>
+                    </tr>
+                }
+                <tr>
+
+                    <td style="text-align: left">
+                        @if (ViewBag.EditMode)
+                        {
+                            if (Model.Album.Ukryty)
+                            {
+                                <a href="@Url.Action("PokazAlbum", "Manage", new { albumId = Model.Album.AlbumId })" style="display: block; margin-top: 15px; font-weight: bold;">
+                                    Przywróć
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("UkryjAlbum", "Manage", new { albumId = Model.Album.AlbumId })" style="display: block; margin-top: 15px; font-weight: bold;">
+                                    Usuń
+                                </a>
+                            }
+                        }
+                    </td>
+
+
+                    <td style="text-align: right;">
+                        <input type="submit" value="Zapisz" class="submitLink" style="height: 40px; margin-right: 0px; margin-top: 30px; font-weight: bold;" />
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    }
+</div>
