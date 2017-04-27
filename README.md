@@ -21,4 +21,4 @@ Dzięki temu projektowi miałem możliwość w praktyce przećwiczyć:
 
 -ustalanie odpowiednich tras przy pomocy routingu i wiele innych
 
-Projekt ten wykonałem po uprzednim ukończeniu kursów video KURS ASP.NET, KURS ASP.NET MVC, Sklep Internetowy (ASP.NET MVC) znajdujących się na kanale youtube Mariusz Jurczenko. W przyszłości zamierzam zapoznać się z kursem Angular 2.0 znajdującym się również na tym kanale. Projekt pozostawiłem w obecnej fazie na rzecz rozpoczęcia prac nad własnym blogiem, którego kod źródłowy również będzie dostępny do wglądu.
+Projekt ten wykonałem po uprzednim ukończeniu kursów video KURS ASP.NET, KURS ASP.NET MVC, Sklep Internetowy (ASP.NET MVC) znajdujących się na kanale youtube Mariusz Jurczenko. W przyszłości zamierzam zapoznać się z kursem Angular 2.0 znajdującym się również na tym kanale. Projekt pozostawiłem w obecnej fazie na rzecz rozpoczęcia prac nad własnym blogiem, którego kod źródłowy również będzie dostępny na githubie.
